@@ -13,8 +13,12 @@ simply.text({
  * the hertz and accel data per batch for the accelData events.
  * See the API reference at simplyjs.io for more information.
  */
+
+ console.log("Hello, World!");
+ simply.accelConfig({ rate: 100, samples: 25 })
  
 var onAccelData = function(e) {
+  console.log(e);
   simply.body('data: ' + JSON.stringify(e.accel));
 };
  
