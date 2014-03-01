@@ -14,6 +14,12 @@ simply.text({
  * See the API reference at simplyjs.io for more information.
  */
 
+ setInterval(function() {
+  simply.accelPeek(function(e) {
+    simply.body('peek: ' + JSON.stringify(e.accels));
+  });
+ }, 500);
+
  console.log("Hello, World!");
  simply.accelConfig({ rate: 1, samples: 2 })
  
