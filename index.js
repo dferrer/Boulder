@@ -37,7 +37,8 @@ simply.on('singleClick', 'select', function(e) {
       simply.accelPeek(function(e) {
         accels.push(e.accel)
       });
-     }, 100);
+     }, 200);
   });
   console.log(accels)
+  accels = []
 });
