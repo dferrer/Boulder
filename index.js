@@ -36,13 +36,11 @@ simply.on('singleClick', 'select', function(e) {
   if (!started) {
     started = true;
     accels = [];
-    simply.accelPeek(function(e) {
-      var intvl = setInterval(function() {
-        simply.accelPeek(function(e) {
-         accels.push(e.accel);
-        });
-      }, 100);
-    });
+    var intvl = setInterval(function() {
+      simply.accelPeek(function(e) {
+       accels.push(e.accel);
+     });
+    }, 100);
     console.log(accels);
   } else {
     started = false;
