@@ -31,11 +31,13 @@ simply.on('singleClick', 'select', function(e) {
     // accelData and accelPeek can't happen simultaneously
     return;
   }
+  accels = []
   simply.accelPeek(function(e) {
     setInterval(function() {
       simply.accelPeek(function(e) {
-        console.log(JSON.stringify(e.accel));
+        accels.push(e.accel)
       });
      }, 20);
   });
+  console.log(accels)
 });
