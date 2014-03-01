@@ -4,8 +4,11 @@ var controller = require('lib/controller'),
 var started = false;
 
 simply.on('longClick', function(e) {
-	if(!started)
+	if(!started) {
 		controller.startRecording();
-	else
+		started = true;
+	} else {
 		controller.stopRecording();
+		started = false;
+	}
 });
