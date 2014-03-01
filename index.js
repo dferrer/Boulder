@@ -49,7 +49,7 @@ simply.on('singleClick', 'select', function(e) {
     return;
   }
   simply.accelPeek(function(e) {
-    simply.body('peek: ' + JSON.stringify(e.accels));
+    simply.body('peek: ' + JSON.stringify(e));
   });
 });
 
