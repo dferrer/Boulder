@@ -9,11 +9,11 @@ simply.text({
 }, true);
 
 simply.on('singleClick', 'up', function(e) {
-  controller.startRecording()
+  controller.startRecording();
 });
 
 simply.on('singleClick', 'down', function(e) {
-  controller.stopRecording()
+  controller.stopRecording();
 });
 
 // simply.on('longClick', function(e) {
