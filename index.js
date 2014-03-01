@@ -23,7 +23,7 @@ simply.text({
  // }, 500);
 
  console.log("Hello, World!");
- simply.accelConfig({ rate: 100, samples: 25 })
+ simply.accelConfig({ rate: 100, samples: 25 });
  
 var onAccelData = function(e) {
   console.log(e);
