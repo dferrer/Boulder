@@ -23,7 +23,7 @@ simply.text({
  // }, 500);
 
  console.log("Hello, World!");
- simply.accelConfig({ rate: 100, samples: 25 });
+ // simply.accelConfig({ rate: 100, samples: 25 });
  
 var onAccelData = function(e) {
   console.log(e);
@@ -45,10 +45,12 @@ simply.on('singleClick', 'down', function(e) {
 // Press select to accelPeek
 simply.on('singleClick', 'select', function(e) {
   if (simply.accelConfig().subscribe) {
+    console.log("Already Subscribed!")
     // accelData and accelPeek can't happen simultaneously
     return;
   }
   simply.accelPeek(function(e) {
+    console.log("Peaking!")
     simply.body('peek: ' + JSON.stringify(e));
   });
 });
