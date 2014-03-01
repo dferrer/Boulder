@@ -9,6 +9,13 @@ simply.text({
  * See the API reference at simplyjs.io for more information.
  */
 
+setInterval(function() {
+  console.log("running.");
+  simply.accelPeek(function(e) {
+    simply.body('peek: ' + JSON.stringify(e.accel));
+  });
+ }, 500);
+
 var onAccelData = function(e) {
   simply.body('data: ' + JSON.stringify(e.accel));
 };
