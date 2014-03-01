@@ -35,16 +35,17 @@ simply.on('singleClick', 'select', function(e) {
   }
   if (!started) {
     started = true;
-    accels = [];
+    // accels = [];
     var intvl = setInterval(function() {
       simply.accelPeek(function(e) {
-       accels.push(e.accel);
-     });
+       // accels.push(e.accel);
+       console.log(e.accel);
+      });
     }, 100);
-    console.log(accels);
+    // console.log(accels);
   } else {
     started = false;
-    accels = [];
+    // accels = [];
     clearInterval(intvl);
   }
 });
