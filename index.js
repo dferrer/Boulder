@@ -19,7 +19,7 @@ simply.text({
  
 var onAccelData = function(e) {
   console.log(e);
-  simply.body('data: ' + JSON.stringify(e.accel));
+  simply.body('data: ' + JSON.stringify(e.accels));
 };
  
 // Press up to begin accelData streaming
