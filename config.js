@@ -2,4 +2,4 @@ var config = {
 	key: "Key"
 };
 
-module.exporst = config;
+module.exports = config;

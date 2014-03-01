@@ -5,7 +5,7 @@ var started = false;
 
 simply.on('longClick', function(e) {
 	if(!started)
-		controller.start_recording();
+		controller.startRecording();
 	else
-		controler.stop_recording();
+		controller.stopRecording();
 });
