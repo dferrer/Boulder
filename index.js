@@ -18,7 +18,7 @@ var onAccelData = function(e) {
 simply.on('singleClick', 'up', function(e) {
   simply.on('accelData', onAccelData);
 });
- 
+
 // Press down until all accelData handlers are removed and you can accelPeek again
 simply.on('singleClick', 'down', function(e) {
   simply.off('accelData', onAccelData);
