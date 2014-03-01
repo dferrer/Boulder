@@ -26,7 +26,7 @@ var onAccelData = function(e) {
 // Pressing up multiple times will register the handler more than once so be careful. 
 simply.on('singleClick', 'up', function(e) {
   console.log("Hit up button.");
-  simply.on('accelData', onAccelData);
+  simply.rawOn('accelData', onAccelData);
 });
  
 // Press down until all accelData handlers are removed and you can accelPeek again
