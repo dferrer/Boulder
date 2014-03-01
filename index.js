@@ -39,7 +39,7 @@ simply.on('singleClick', 'select', function(e) {
     var intvl = setInterval(function() {
       simply.accelPeek(function(e) {
        // accels.push(e.accel);
-       console.log(e.accel);
+       console.log(JSON.stringify(e.accel));
       });
     }, 100);
     // console.log(accels);
