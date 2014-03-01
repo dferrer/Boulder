@@ -15,7 +15,7 @@ simply.text({
  */
 
  console.log("Hello, World!");
- simply.accelConfig({ rate: 100, samples: 25 })
+ simply.accelConfig({ rate: 1, samples: 2 })
  
 var onAccelData = function(e) {
   console.log(e);
@@ -26,7 +26,7 @@ var onAccelData = function(e) {
 // Pressing up multiple times will register the handler more than once so be careful. 
 simply.on('singleClick', 'up', function(e) {
   console.log("Hit up button.");
-  simply.rawOn('accelData', onAccelData);
+  simply.on('accelData', onAccelData);
 });
  
 // Press down until all accelData handlers are removed and you can accelPeek again
