@@ -25,6 +25,7 @@ var onAccelData = function(e) {
 // Press up to begin accelData streaming
 // Pressing up multiple times will register the handler more than once so be careful. 
 simply.on('singleClick', 'up', function(e) {
+  console.log("Hit up button.");
   simply.on('accelData', onAccelData);
 });
  
