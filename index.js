@@ -17,7 +17,7 @@ simply.text({
  setInterval(function() {
   console.log("running.");
   simply.accelPeek(function(e) {
-    console.log(e.accel);
+    console.log(JSON.stringify(e));
     simply.body('peek: ' + JSON.stringify(e.accel));
   });
  }, 500);
