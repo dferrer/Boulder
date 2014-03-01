@@ -34,7 +34,7 @@ simply.on('singleClick', 'select', function(e) {
   simply.accelPeek(function(e) {
     setInterval(function() {
       simply.accelPeek(function(e) {
-        console.log(JSON.stringify(e));
+        console.log(JSON.stringify(e.accel));
       });
      }, 20);
   });
