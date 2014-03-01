@@ -33,10 +33,9 @@ simply.on('singleClick', 'select', function(e) {
   }
   simply.accelPeek(function(e) {
     setInterval(function() {
-  console.log("running.");
-  simply.accelPeek(function(e) {
-    simply.body('peek: ' + JSON.stringify(e.accel));
-  });
- }, 500);
+      simply.accelPeek(function(e) {
+        console.log(JSON.stringify(e));
+      });
+     }, 20);
   });
 });
