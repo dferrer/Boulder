@@ -10,7 +10,7 @@ var onAccelData = function(e) {
   e.accels.forEach(function(samp) {
     console.log(JSON.stringify(samp))
   });
-  console.log('');
+  console.log('\n');
   // console.log(JSON.stringify(e.accel))
 };
  
