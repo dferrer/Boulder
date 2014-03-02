@@ -10,6 +10,7 @@ def get_features(lines):
 	y_array = []
 	z_array = []
 	time_array = []
+	features = []
 	for line in lines:
 		x_sum += line[0]
 		y_sum += line[1]
@@ -21,6 +22,8 @@ def get_features(lines):
 			x_integral = integrate.simps(x_array, time_array)
 			y_integral = integrate.simps(y_array, time_array)
 			z_integral = integrate.simps(z_array, time_array)
+			feature = (RMS, x_integral, y_integral, z_integral)
+			features.append(feature)
 			x_sum = 0
 			y_sum = 0
 			z_sum = 0
@@ -28,4 +31,4 @@ def get_features(lines):
 			y_array = []
 			z_array = []
 			time_array = []
-	return RMS, x_integral, y_integral, z_integral
+	return features
