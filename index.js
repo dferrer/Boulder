@@ -4,7 +4,7 @@ simply.text({
 }, true);
 
 var onAccelData = function(e) {
-  simply.body('data: ' + e.accels, true);
+  simply.body('data: ' + JSON.stringify(e.accels[0]) + '\n' + JSON.stringify(e.accels[1]), true);
   // console.log(JSON.stringify(e.accel))
 };
  
