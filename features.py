@@ -37,7 +37,7 @@ def get_features(lines):
 		y_array.append(int(line[1]))
 		z_array.append(int(line[2]))
 		if int(line[0]) > x_max:
-			x_max = int(line[0])å
+			x_max = int(line[0])
 		if int(line[1]) > y_max:
 			y_max = int(line[1])
 		if int(line[2]) > z_max:
@@ -64,7 +64,7 @@ def get_features(lines):
 	return features
 
 features, test_features = [], []
-numDumbell, numShoulder, numNothing = 0, 0, 0
+numDumbell, numShoulder, numShoulderPush, numNothing = 0, 0, 0
 clf = svm.LinearSVC()
 with open('dumbell.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
@@ -77,6 +77,12 @@ with open('shoulder.csv', 'rU') as csvfile:
 	sTest = get_features(reader)
 	numShoulder = len(sTest)
 	features += sTest
+	
+with open('shoulder_push.csv', 'rU') as csvfile:
+	reader = csv.reader(csvfile)
+	spTest = get_features(reader)
+	numShoulderPush = len(spTest)
+	features += spTest
 
 with open('nothing.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
@@ -84,7 +90,7 @@ with open('nothing.csv', 'rU') as csvfile:
 	numNothing = len(nTest)
 	features += nTest
 
-trainingCategories = [0 for i in range(numDumbell)] + [1 for i in range(numShoulder)] + [2 for i in range(numNothing)]
+trainingCategories = [2 for i in range(numDumbell)] + [1 for i in range(numShoulder)] + [3 for i in range(numShoulderPush)] + [0 for i in range(numNothing)]
 clf.fit(features, trainingCategories)
 
 with open('nothing_test.csv', 'rU') as csvfile:
