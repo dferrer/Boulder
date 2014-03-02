@@ -57,9 +57,9 @@ simply.on('singleClick', 'up', function(e) {
   isTesting = !isTesting;
   if(isTesting) {
     simply.vibe("short");
-    simply.text({title: "Boulder Tester", body: "Data is being logged to " + trainingSite}, true);
+    simply.text({title: "Boulder Exercising", body: "Exercise is being monitored."}, true);
   } else {
     simply.vibe("short");
-    loadView();
+    api.displayUserProfile();
   }
 });
