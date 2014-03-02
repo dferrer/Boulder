@@ -1,4 +1,4 @@
-import math, numpy
+import math, numpy, csv
 from scipy.integrate import simps
 import scipy.signal
 from scikits.learn import svm
@@ -53,7 +53,9 @@ def get_features(lines):
 	return features
 
 clf = svm.LinearSVC()
-clf.fit(get_features(sajsflijasoifjdasoidfjasdf), [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2])
+with open('data.csv', 'rU') as csvfile:
+	reader = csv.reader(csvfile)
+	clf.fit(get_features(reader), [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2])
 
 if __name__ == "__main__":
 	with open('data/barbell.training_data.training_result') as f:
