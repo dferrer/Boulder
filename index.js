@@ -4,8 +4,8 @@ simply.text({
 }, true);
 
 var onAccelData = function(e) {
-  // simply.body('data: ' + JSON.stringify(e.accel), true);
-  console.log(JSON.stringify(e.accel))
+  simply.body('data: ' + e.accel, true);
+  // console.log(JSON.stringify(e.accel))
 };
  
 // Press up to begin accelData streaming
