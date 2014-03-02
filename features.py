@@ -1,5 +1,5 @@
 import math
-import scipy as sp
+from scipy.integrate import simps
 
 def get_features(lines):
 	current_rep = 1
@@ -18,9 +18,9 @@ def get_features(lines):
 		if current_rep != line[4]:
 			current_rep = line[4]
 			RMS = math.sqrt(x_sum * x_sum + y_sum * y_sum + z_sum * z_sum)
-			x_integral = sp.integrate.simps(x_array, time_array)
-			y_integral = sp.integrate.simps(y_array, time_array)
-			z_integral = sp.integrate.simps(z_array, time_array)
+			x_integral = integrate.simps(x_array, time_array)
+			y_integral = integrate.simps(y_array, time_array)
+			z_integral = integrate.simps(z_array, time_array)
 			x_sum = 0
 			y_sum = 0
 			z_sum = 0
