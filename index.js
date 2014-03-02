@@ -1,5 +1,6 @@
 var api = require('lib/api.js');
 
+simply.style("mono");
 function loadView() {
   simply.text({
     title: 'Boulder App',
