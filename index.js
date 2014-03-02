@@ -1,4 +1,4 @@
-var api = require('lib/api');
+var api = require('lib/api.js');
 
 function reset() {
   simply.text({
