@@ -5,3 +5,4 @@ with open('data.csv', 'rU') as csvfile:
 		y = line[1]
 		z = line[2]
 		time = line[3]
+		repnumber = line[4]
