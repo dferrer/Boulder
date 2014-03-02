@@ -1,6 +1,7 @@
 import math, numpy
 from scipy.integrate import simps
 import scipy.signal
+from scikits.learn import svm
 
 current_window, next_window = [], []
 
@@ -50,6 +51,9 @@ def get_features(lines):
 			x_max, y_max, z_max = -100000, -100000, -100000
 			x_array, y_array, z_array, time_array = [], [], [], []
 	return features
+
+clf = svm.LinearSVC()
+clf.fit(get_features(sajsflijasoifjdasoidfjasdf), [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2])
 
 if __name__ == "__main__":
 	with open('data/barbell.training_data.training_result') as f:
