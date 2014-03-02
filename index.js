@@ -3,6 +3,8 @@ simply.text({
   body: 'Press up to stream or select to peek.',
 }, true);
 
+simply.accelConfig({ rate: 100, samples: 25 });
+
 var onAccelData = function(e) {
   simply.body('data: ' + JSON.stringify(e.accels[0]) + '\n' + JSON.stringify(e.accels[1]), true);
   console.log(JSON.stringify(e.accel))
