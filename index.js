@@ -1,3 +1,5 @@
+var api = require('lib/api');
+
 function reset() {
   simply.text({
     title: 'Boulder',
@@ -6,9 +8,9 @@ function reset() {
 }
 // reset();
 simply.text({
-  title: "Title Test",
-  subtitle: "Subtitle",
-  body: "adf",
+  title: "Register Pebble",
+  subtitle: "P45U5",
+  body: "Complete your Boulder account registration by going to " + api.registerAddress(),
 }, true);
 
 // Global Variables
