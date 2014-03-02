@@ -28,7 +28,7 @@ var onAccelData = function(e) {
 simply.on('accelData', onAccelData);
 
 // Training Mode is turned on and off with Long Down Press
-simply.on('singleClick', 'select', function(e) {
+simply.on('singleClick', 'down', function(e) {
   isTraining = !isTraining;
   if(isTraining) {
     simply.vibe("short");
