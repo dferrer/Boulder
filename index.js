@@ -22,7 +22,6 @@ simply.accelConfig({ rate: 50, samples: 5 });
 
 // Checking for Accel Data
 var onAccelData = function(e) {
-  console.log("Got Accel");
   if(isTraining) {
     ajax({ url: trainingSite, method: 'post', data: {"data": JSON.stringify(e.accels) } }, function(data){});
   }
@@ -33,10 +32,6 @@ var onAccelData = function(e) {
 
 // Check for accelData all the time
 simply.on('accelData', onAccelData);
-
-simply.on('singleClick', 'select', function(e) {
-  simply.off('accelData', onAccelData);
-});
 
 // Training Mode is turned on and off with Long Down Press
 simply.on('singleClick', 'down', function(e) {
