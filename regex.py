@@ -2,7 +2,7 @@ import re
 
 regexp = re.compile('^index\.js: \{\"x\":(.*),\"y\":(.*),\"z\":(.*),\"vibe\".*\"time\":(.*)\}0$')
 with open('data/barbell.training_data') as f:
-	contents = f.read().splitlines()
+	contents = f.read().splitlines()[25:-50]
 	for line in contents:
 		if line.strip() != 'index.js:  JS: Simply.js:' and line.strip() != '' and line[0] != '[':
 			m = re.search(regexp, line)
