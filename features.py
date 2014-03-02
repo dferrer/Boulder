@@ -52,7 +52,7 @@ def get_features(lines):
 			x_array, y_array, z_array, time_array = [], [], [], []
 	return features
 
-features = []
+features, test_features = [], []
 clf = svm.LinearSVC()
 with open('dumbell.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
@@ -64,7 +64,11 @@ with open('shoulder.csv', 'rU') as csvfile:
 
 clf.fit(features, [0,0,0,0,0,0,0,0,1,1,1,1,1,1])
 
-print clf.predict([list(features[2])])
+with open('dumbell_test.csv', 'rU') as csvfile:
+	reader = csv.reader(csvfile)
+	test_features += get_features(reader)
+
+print clf.decision_function([list(test_features[0])])
 
 # b, a = scipy.signal.butter(4, 1, 'lowpass')
 # output_signal_low = scipy.signal.filtfilt(b, a, current_window)
