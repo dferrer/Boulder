@@ -13,6 +13,17 @@ def push(data):
 		if len(next_window) == 128:
 			current_window = current_window[128:] + next_window
 
+def test_null(lines):
+	x_sum, y_sum, z_sum, counter = 0, 0, 0, 0
+	for line in lines:
+		x_sum += abs(int(line[0]))
+		y_sum += abs(int(line[1]))
+		z_sum += abs(int(line[2]))
+		counter += 1
+	if (x_sum  + y_sum  + z_sum) / counter < 1800:
+		return True
+	return False
+
 def get_features(lines):
 	current_rep = 0
 	x_sum, y_sum, z_sum = 0, 0, 0
@@ -64,11 +75,22 @@ with open('shoulder.csv', 'rU') as csvfile:
 
 clf.fit(features, [0,0,0,0,0,0,0,0,1,1,1,1,1,1])
 
-with open('dumbell_test.csv', 'rU') as csvfile:
+
+bad = True
+with open('nothing_test.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
 	test_features += get_features(reader)
 
-print clf.decision_function([list(test_features[0])])
+print bad if "No Action" else clf.predict([list(test_features[0])])
+
+# with open('nothing_test.csv', 'rU') as csvfile:
+# 	reader = csv.reader(csvfile)
+# 	test_features += get_features(reader)
+# 	if test_null(reader):
+# 		print "No action"
+# 	else:
+# 		print clf.predict([list(test_features[0])])
+
 
 # b, a = scipy.signal.butter(4, 1, 'lowpass')
 # output_signal_low = scipy.signal.filtfilt(b, a, current_window)
