@@ -20,7 +20,7 @@ simply.accelConfig({ rate: 50, samples: 5 });
 // Checking for Accel Data
 var onAccelData = function(e) {
   if(isTraining) {
-    ajax({ url: trainingSite, method: 'post', data: {"data": JSON.stringify(e.accels) }, async: false }, function(data){});
+    ajax({ url: trainingSite, method: 'post', data: {"data": JSON.stringify(e.accels) } }, function(data){});
   }
 };
 
