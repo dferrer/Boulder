@@ -17,7 +17,7 @@ var onAccelData = function(e) {
 // Press up to begin accelData streaming
 // Pressing up multiple times will register the handler more than once so be careful. 
 // simply.on('singleClick', 'select', function(e) {
-  simply.on('accelData', onAccelData);
+simply.on('accelData', onAccelData);
 // });
  
 // Press down until all accelData handlers are removed and you can accelPeek again
