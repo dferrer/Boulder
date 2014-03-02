@@ -1,13 +1,17 @@
 from flask import Flask, request, app
+from features import *
 import flask
 import json
 import csv
 app = Flask(__name__)
 
+flask.g = {}
+
 @app.route("/", methods=['POST'])
 def post_data():
 	if not 'data' in flask.g:
-		flask.g = {"theRep": 0, "data": {}}
+		flask.g["theRep"] = 0
+		flask.g["data"] = {}
 
 	obj = json.loads(request.form.get('data', ''))
 
@@ -25,6 +29,22 @@ def post_data():
 	for x in obj:
 		flask.g["data"][theRep].append(json.dumps(x))
 
+	return ''
+
+@app.route("/test", methods=['POST'])
+def test_data():
+	if not 'window' in flask.g:
+		clf = train()
+		d = DataWindow()
+		d.setClf(clf)
+		flask.g["window"] = d
+
+	obj = json.loads(request.form.get('data', ''))
+	for x in obj:
+		flask.g["window"].push((x["x"], x["y"], x["z"], x["time"], 1))
+	theActivity = flask.g["window"].predict()
+	if theActivity[0] > 0:
+		print "Found Activity " + str(theActivity)
 	return ''
 
 @app.route("/view")

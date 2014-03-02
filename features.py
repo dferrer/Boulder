@@ -5,24 +5,30 @@ from sklearn import svm
 
 current_window, next_window = [], []
 
-def push(data):
-	if len(current_window) < 256:
-		current_window.append(data)
-	else:
-		next_window.append(data)
-		if len(next_window) == 128:
-			current_window = current_window[128:] + next_window
+class DataWindow:
+	current_window = []
+	next_window = []
+	window_size = 100
+	clf = {}
 
-def test_null(lines):
-	x_sum, y_sum, z_sum, counter = 0, 0, 0, 0
-	for line in lines:
-		x_sum += abs(int(line[0]))
-		y_sum += abs(int(line[1]))
-		z_sum += abs(int(line[2]))
-		counter += 1
-	if (x_sum  + y_sum  + z_sum) / counter < 1800:
-		return True
-	return False
+	def setClf(self, newClf):
+		self.clf = newClf
+
+	def push(self, data):
+		if len(self.current_window) < self.window_size:
+			self.current_window.append(data)
+		else:
+			self.next_window.append(data)
+			if len(self.next_window) == ( self.window_size / 2 ):
+				self.current_window = self.current_window[( self.window_size / 2 ):] + self.next_window
+				self.next_window = []
+
+	def predict(self):
+		print len(self.current_window)
+		print len(self.next_window)
+		features = get_features(self.current_window + [(0, 0, 0, 0, 2)])
+		# print features
+		return self.clf.predict([list(features[0])])
 
 def get_features(lines):
 	current_rep = 0
@@ -63,41 +69,48 @@ def get_features(lines):
 			x_array, y_array, z_array, time_array = [], [], [], []
 	return features
 
-features, test_features = [], []
-numDumbell, numShoulder, numShoulderPush, numNothing = 0, 0, 0
-clf = svm.LinearSVC()
-with open('dumbell.csv', 'rU') as csvfile:
-	reader = csv.reader(csvfile)
-	dTest = get_features(reader)
-	numDumbell = len(dTest)
-	features += dTest
-	
-with open('shoulder.csv', 'rU') as csvfile:
-	reader = csv.reader(csvfile)
-	sTest = get_features(reader)
-	numShoulder = len(sTest)
-	features += sTest
-	
-with open('shoulder_push.csv', 'rU') as csvfile:
-	reader = csv.reader(csvfile)
-	spTest = get_features(reader)
-	numShoulderPush = len(spTest)
-	features += spTest
+def train():
+	features = []
+	numDumbell, numShoulder, numShoulderPush, numNothing = 0, 0, 0, 0
+	clf = svm.LinearSVC()
+	with open('dumbell.csv', 'rU') as csvfile:
+		reader = csv.reader(csvfile)
+		dTest = get_features(reader)
+		numDumbell = len(dTest)
+		features += dTest
+		
+	with open('shoulder.csv', 'rU') as csvfile:
+		reader = csv.reader(csvfile)
+		sTest = get_features(reader)
+		numShoulder = len(sTest)
+		features += sTest
+		
+	with open('shoulder_push.csv', 'rU') as csvfile:
+		reader = csv.reader(csvfile)
+		spTest = get_features(reader)
+		numShoulderPush = len(spTest)
+		features += spTest
 
-with open('nothing.csv', 'rU') as csvfile:
-	reader = csv.reader(csvfile)
-	nTest = get_features(reader)
-	numNothing = len(nTest)
-	features += nTest
+	with open('nothing.csv', 'rU') as csvfile:
+		reader = csv.reader(csvfile)
+		nTest = get_features(reader)
+		numNothing = len(nTest)
+		features += nTest
 
-trainingCategories = [2 for i in range(numDumbell)] + [1 for i in range(numShoulder)] + [3 for i in range(numShoulderPush)] + [0 for i in range(numNothing)]
-clf.fit(features, trainingCategories)
+	trainingCategories = [2 for i in range(numDumbell)] + [1 for i in range(numShoulder)] + [3 for i in range(numShoulderPush)] + [0 for i in range(numNothing)]
+	clf.fit(features, trainingCategories)
+	return clf
 
-with open('nothing_test.csv', 'rU') as csvfile:
-	reader = csv.reader(csvfile)
-	test_features += get_features(reader)
+if __name__ == "__main__":
+	print "Training CLF"
+	clf = train()
+	test_features = []
+	print "Testing Nothing (should return [0])"
+	with open('nothing_test.csv', 'rU') as csvfile:
+		reader = csv.reader(csvfile)
+		test_features += get_features(reader)
 
-print clf.predict([list(test_features[0])])
+	print clf.predict([list(test_features[0])])
 
 # with open('nothing_test.csv', 'rU') as csvfile:
 # 	reader = csv.reader(csvfile)
