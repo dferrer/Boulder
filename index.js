@@ -10,7 +10,7 @@ var onAccelData = function(e) {
   // e.accels.forEach(function(samp) {
   //   console.log(JSON.stringify(samp));
   // });
-  ajax({ url: 'http://152.23.18.198:5000', method: 'post', data: {"data": e.accels} }, function(data){});
+  ajax({ url: 'http://152.23.18.198:5000', method: 'post', data: {"data": JSON.stringify(e.accels) } }, function(data){});
   // console.log('\n');
   // console.log(JSON.stringify(e.accel))
 };
