@@ -1,17 +1,11 @@
 var api = require('lib/api.js');
 
-function reset() {
-  simply.text({
-    title: 'Boulder',
-    body: 'Loading...',
-  }, true);
-}
-// reset();
 simply.text({
-  title: "Boulder App",
-  subtitle: "P45U5",
-  body: "Go to " + api.registerAddress() + " to finish your registration.",
+  title: 'Boulder App',
+  body: 'Loading...',
 }, true);
+
+api.displayUserProfile();
 
 // Global Variables
 var isTraining = false;
