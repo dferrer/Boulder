@@ -55,7 +55,6 @@ simply.on('singleClick', 'up', function(e) {
   isTesting = !isTesting;
   if(isTesting) {
     simply.vibe("short");
-    ajax({ url: trainingSite, method: 'post', data: {"data": '{"begin_rep": 1 }'} }, function(data){});
     simply.text({title: "Boulder Tester", body: "Data is being logged to " + trainingSite}, true);
   } else {
     simply.vibe("short");
