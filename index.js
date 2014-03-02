@@ -25,29 +25,29 @@ simply.on('singleClick', 'down', function(e) {
   simply.off('accelData', onAccelData);
 });
  
-var started = false;
+// var started = false;
 
-// Press select to accelPeek
-simply.on('singleClick', 'select', function(e) {
-  if (simply.accelConfig().subscribe) {
-    console.log("Already Subscribed!")
-    // accelData and accelPeek can't happen simultaneously
-    return;
-  }
-  if (!started) {
-    started = true;
-    // accels = [];
-    var intvl = setInterval(function() {
-      simply.accelPeek(function(e) {
-       // accels.push(e.accel);
-       console.log(JSON.stringify(e.accel));
-      });
-    }, 100);
+// // Press select to accelPeek
+// simply.on('singleClick', 'select', function(e) {
+//   if (simply.accelConfig().subscribe) {
+//     console.log("Already Subscribed!")
+//     // accelData and accelPeek can't happen simultaneously
+//     return;
+//   }
+//   if (!started) {
+//     started = true;
+//     // accels = [];
+//     var intvl = setInterval(function() {
+//       simply.accelPeek(function(e) {
+//        // accels.push(e.accel);
+//        console.log(JSON.stringify(e.accel));
+//       });
+//     }, 100);
     
-    // console.log(accels);
-  } else {
-    started = false;
-    // accels = [];
-    clearInterval(intvl);
-  }
-});
+//     // console.log(accels);
+//   } else {
+//     started = false;
+//     // accels = [];
+//     clearInterval(intvl);
+//   }
+// });
