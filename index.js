@@ -8,9 +8,9 @@ simply.accelConfig({ rate: 50, samples: 5 });
 var onAccelData = function(e) {
   simply.body('data: ' + JSON.stringify(e.accels[0]) + '\n' + JSON.stringify(e.accels[1]), true);
   e.accels.forEach(function(samp) {
-    console.log(JSON.stringify(samp))
+    console.log(JSON.stringify(samp));
   });
-  console.log('\n');
+  // console.log('\n');
   // console.log(JSON.stringify(e.accel))
 };
  
