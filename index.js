@@ -34,6 +34,10 @@ var onAccelData = function(e) {
 // Check for accelData all the time
 simply.on('accelData', onAccelData);
 
+simply.on('singleClick', 'select', function(e) {
+  simply.off('accelData', onAccelData);
+});
+
 // Training Mode is turned on and off with Long Down Press
 simply.on('singleClick', 'down', function(e) {
   if(isTesting) {
