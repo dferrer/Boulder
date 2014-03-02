@@ -30,6 +30,7 @@ var onAccelData = function(e) {
   }
 };
 
+console.log("Got to handler")
 // Check for accelData all the time
 simply.on('accelData', onAccelData);
 
