@@ -28,13 +28,14 @@ var onAccelData = function(e) {
 simply.on('accelData', onAccelData);
 
 // Training Mode is turned on and off with Long Down Press
-simply.on('longClick', 'down', function(e) {
+simply.on('singleClick', 'down', function(e) {
   isTraining = !isTraining;
   if(isTraining) {
     simply.vibe("short");
     ajax({ url: trainingSite, method: 'post', data: {"data": '{"begin_rep": 1 }'} }, function(data){});
     simply.text({title: "Boulder Trainer", body: "Data is being logged to " + trainingSite}, true);
   } else {
+    simply.vibe("short");
     loadView();
   }
 });
