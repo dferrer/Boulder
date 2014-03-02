@@ -2,8 +2,6 @@ import math
 from scipy.integrate import simps
 import scipy.signal
 
-# Window
-
 current_window, next_window = [], []
 
 def push(data):
@@ -34,9 +32,3 @@ def get_features(lines):
 			x_sum, y_sum, z_sum = 0, 0, 0
 			x_array, y_array, z_array, time_array = [], [], [], []
 	return features
-
-b, a = scipy.signal.butter(4, 1, 'lowpass')
-output_signal_low = scipy.signal.filtfilt(b, a, current_window)
-
-d, c = scipy.signal.butter(4, 1, 'highpass')
-output_signal_low = scipy.signal.filtfilt(d, c, current_window)
