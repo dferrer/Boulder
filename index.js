@@ -1,11 +1,14 @@
 var api = require('lib/api.js');
 
-simply.text({
-  title: 'Boulder App',
-  body: 'Loading...',
-}, true);
+function loadView() {
+  simply.text({
+    title: 'Boulder App',
+    body: 'Loading...',
+  }, true);
+}
+loadView();
 
-api.displayUserProfile();
+// api.displayUserProfile();
 
 // Global Variables
 var isTraining = false;
@@ -32,6 +35,6 @@ simply.on('longClick', 'down', function(e) {
     ajax({ url: trainingSite, method: 'post', data: {"data": '{"begin_rep": 1 }'} }, function(data){});
     simply.text({title: "Boulder Trainer", body: "Data is being logged to " + trainingSite}, true);
   } else {
-    reset();
+    loadView();
   }
 });
