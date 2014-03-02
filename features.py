@@ -28,3 +28,4 @@ def get_features(lines):
 			y_array = []
 			z_array = []
 			time_array = []
+	return RMS, x_integral, y_integral, z_integral
