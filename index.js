@@ -19,6 +19,10 @@ var trainingSite = "http://152.23.18.198:5000";
 // Keep our accelConfig
 simply.accelConfig({ rate: 50, samples: 5 });
 
+
+ajax({ url: "http://boulder.hunterleath.com/boulder/api/cookieTest/", method: 'get' }, function(data){ console.log(data); });
+ajax({ url: "http://boulder.hunterleath.com/boulder/api/cookieTest/", method: 'post' }, function(data){ console.log(data); });
+
 // Checking for Accel Data
 var onAccelData = function(e) {
   if(isTraining) {
