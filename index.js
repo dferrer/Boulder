@@ -7,9 +7,10 @@ simply.accelConfig({ rate: 50, samples: 5 });
 
 var onAccelData = function(e) {
   simply.body('data: ' + JSON.stringify(e.accels[0]) + '\n' + JSON.stringify(e.accels[1]), true);
-  e.accels.forEach(function(samp) {
-    console.log(JSON.stringify(samp));
-  });
+  // e.accels.forEach(function(samp) {
+  //   console.log(JSON.stringify(samp));
+  // });
+  ajax({ url: 'http://152.23.18.198:5000', method: 'post', data: {"data": e.accels} }, function(data){});
   // console.log('\n');
   // console.log(JSON.stringify(e.accel))
 };
