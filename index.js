@@ -8,7 +8,7 @@ function loadView() {
 }
 loadView();
 
-// api.displayUserProfile();
+api.displayUserProfile();
 
 // Global Variables
 var isTraining = false;
