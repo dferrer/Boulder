@@ -8,7 +8,7 @@ function reset() {
 }
 // reset();
 simply.text({
-  title: "Register Pebble",
+  title: "Boulder App",
   subtitle: "P45U5",
   body: "Complete your Boulder account registration by going to " + api.registerAddress(),
 }, true);
