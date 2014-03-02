@@ -2,8 +2,6 @@ import math, numpy
 from scipy.integrate import simps
 import scipy.signal
 
-# Window
-
 current_window, next_window = [], []
 
 def push(data):
