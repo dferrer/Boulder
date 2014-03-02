@@ -52,10 +52,17 @@ def get_features(lines):
 			x_array, y_array, z_array, time_array = [], [], [], []
 	return features
 
+features = []
 clf = svm.LinearSVC()
-with open('data.csv', 'rU') as csvfile:
+with open('dumbbell.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
-	clf.fit(get_features(reader), [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2])
+	features += get_features(reader)
+	
+with open('shoulder.csv', 'rU') as csvfile:
+	reader = csv.reader(csvfile)
+	features += get_features(reader)
+
+clf.fit(features, [0,0,0,0,0,0,0,0,1,1,1,1,1,1])
 
 if __name__ == "__main__":
 	with open('data/barbell.training_data.training_result') as f:
