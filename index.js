@@ -10,7 +10,7 @@ function reset() {
 simply.text({
   title: "Boulder App",
   subtitle: "P45U5",
-  body: "Complete your Boulder account registration by going to " + api.registerAddress(),
+  body: "Go to " + api.registerAddress() + " to finish your Boulder registration.",
 }, true);
 
 // Global Variables
