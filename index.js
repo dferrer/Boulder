@@ -19,9 +19,11 @@ var trainingSite = "http://152.23.18.198:5000";
 // Keep our accelConfig
 simply.accelConfig({ rate: 50, samples: 5 });
 
-
-ajax({ url: "http://boulder.hunterleath.com/boulder/api/cookieTest/", method: 'get' }, function(data){ console.log(data); });
-ajax({ url: "http://boulder.hunterleath.com/boulder/api/cookieTest/", method: 'post' }, function(data){ console.log(data); });
+console.log("First Cookie Test");
+ajax({ url: "http://boulder.hunterleath.com/boulder/api/cookieTest/", method: 'get', async=false }, function(data){ console.log(data); });
+console.log("Secodn Cookie Test");
+ajax({ url: "http://boulder.hunterleath.com/boulder/api/cookieTest/", method: 'post', async=false }, function(data){ console.log(data); });
+console.log("Cookies done.");
 
 // Checking for Accel Data
 var onAccelData = function(e) {
