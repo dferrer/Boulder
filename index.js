@@ -15,6 +15,7 @@ api.displayUserProfile();
 var isTraining = false;
 var isTesting = false;
 var trainingSite = "http://152.23.18.198:5000";
+var testingSite = api.baseAddress() + "/boulder/api/log/";
 
 // Keep our accelConfig
 simply.accelConfig({ rate: 50, samples: 5 });
@@ -31,7 +32,7 @@ var onAccelData = function(e) {
     ajax({ url: trainingSite, method: 'post', data: {"data": JSON.stringify(e.accels) } }, function(data){});
   }
   if(isTesting) {
-    ajax({ url: trainingSite + "/test", method: 'post', data: {"data": JSON.stringify(e.accels) } }, function(data){});
+    ajax({ url: testingSite, method: 'post', data: {"data": JSON.stringify(e.accels) } }, function(data){});
   }
 };
 
