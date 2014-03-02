@@ -1,10 +1,15 @@
 function reset() {
   simply.text({
     title: 'Boulder',
-    body: 'Welcome to Boulder.',
+    body: 'Loading...',
   }, true);
 }
-reset();
+// reset();
+simply.text({
+  title: "Title Test",
+  subtitle: "Subtitle",
+  body: "adf",
+}, true);
 
 // Global Variables
 var isTraining = false;
@@ -29,7 +34,7 @@ simply.on('longClick', 'down', function(e) {
   if(isTraining) {
     simply.vibe("short");
     ajax({ url: trainingSite, method: 'post', data: {"data": '{"begin_rep": 1 }'} }, function(data){});
-    simply.text({title: "Boulder Trainer", body: "Data is being logged to " + trainingSite});
+    simply.text({title: "Boulder Trainer", body: "Data is being logged to " + trainingSite}, true);
   } else {
     reset();
   }
