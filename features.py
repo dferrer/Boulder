@@ -1,7 +1,7 @@
 import math, numpy, csv
 from scipy.integrate import simps
 import scipy.signal
-from scikits.learn import svm
+from sklearn import svm
 
 current_window, next_window = [], []
 
@@ -14,7 +14,7 @@ def push(data):
 			current_window = current_window[128:] + next_window
 
 def get_features(lines):
-	current_rep = 1
+	current_rep = 0
 	x_sum, y_sum, z_sum = 0, 0, 0
 	x_max, y_max, z_max = -100000, -100000, -100000
 	x_array, y_array, z_array, time_array, features = [], [], [], [], []
@@ -44,7 +44,7 @@ def get_features(lines):
 			x_std = numpy.std(x_array)
 			y_std = numpy.std(y_array)
 			z_std = numpy.std(z_array)
-			feature = (RMS, x_max, y_max, z_max, x_average, y_average, z_average, x_std, y_std, z_std)
+			feature = (RMS, int(x_max), int(y_max), int(z_max), x_average, y_average, z_average, x_std, y_std, z_std)
 			# feature = (RMS, x_integral, y_integral, z_integral, x_average, y_average, z_average, x_std, y_std, z_std)
 			features.append(feature)
 			x_sum, y_sum, z_sum = 0, 0, 0
@@ -54,7 +54,7 @@ def get_features(lines):
 
 features = []
 clf = svm.LinearSVC()
-with open('dumbbell.csv', 'rU') as csvfile:
+with open('dumbell.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
 	features += get_features(reader)
 	
@@ -64,13 +64,7 @@ with open('shoulder.csv', 'rU') as csvfile:
 
 clf.fit(features, [0,0,0,0,0,0,0,0,1,1,1,1,1,1])
 
-if __name__ == "__main__":
-	with open('data/barbell.training_data.training_result') as f:
-		contents = f.read().splitlines()
-		inpt = []
-		for line in contents:
-			inpt.append(line.split(' '))
-		get_features(inpt)
+print clf.predict([list(features[2])])
 
 # b, a = scipy.signal.butter(4, 1, 'lowpass')
 # output_signal_low = scipy.signal.filtfilt(b, a, current_window)
