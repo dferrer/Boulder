@@ -36,12 +36,12 @@ def get_features(lines):
 		x_array.append(int(line[0]))
 		y_array.append(int(line[1]))
 		z_array.append(int(line[2]))
-		if line[0] > x_max:
-			x_max = line[0]
-		if line[1] > y_max:
-			y_max = line[1]
-		if line[2] > z_max:
-			z_max = line[2]
+		if int(line[0]) > x_max:
+			x_max = int(line[0])å
+		if int(line[1]) > y_max:
+			y_max = int(line[1])
+		if int(line[2]) > z_max:
+			z_max = int(line[2])
 		time_array.append(int(line[3]))
 		if current_rep != int(line[4]):
 			current_rep = int(line[4])
@@ -55,7 +55,7 @@ def get_features(lines):
 			x_std = numpy.std(x_array)
 			y_std = numpy.std(y_array)
 			z_std = numpy.std(z_array)
-			feature = (RMS, int(x_max), int(y_max), int(z_max), x_average, y_average, z_average, x_std, y_std, z_std)
+			feature = (RMS, x_max, y_max, z_max, x_average, y_average, z_average, x_std, y_std, z_std)
 			# feature = (RMS, x_integral, y_integral, z_integral, x_average, y_average, z_average, x_std, y_std, z_std)
 			features.append(feature)
 			x_sum, y_sum, z_sum = 0, 0, 0
@@ -64,24 +64,34 @@ def get_features(lines):
 	return features
 
 features, test_features = [], []
+numDumbell, numShoulder, numNothing = 0, 0, 0
 clf = svm.LinearSVC()
 with open('dumbell.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
-	features += get_features(reader)
+	dTest = get_features(reader)
+	numDumbell = len(dTest)
+	features += dTest
 	
 with open('shoulder.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
-	features += get_features(reader)
+	sTest = get_features(reader)
+	numShoulder = len(sTest)
+	features += sTest
 
-clf.fit(features, [0,0,0,0,0,0,0,0,1,1,1,1,1,1])
+with open('nothing.csv', 'rU') as csvfile:
+	reader = csv.reader(csvfile)
+	nTest = get_features(reader)
+	numNothing = len(nTest)
+	features += nTest
 
+trainingCategories = [0 for i in range(numDumbell)] + [1 for i in range(numShoulder)] + [2 for i in range(numNothing)]
+clf.fit(features, trainingCategories)
 
-bad = True
 with open('nothing_test.csv', 'rU') as csvfile:
 	reader = csv.reader(csvfile)
 	test_features += get_features(reader)
 
-print bad if "No Action" else clf.predict([list(test_features[0])])
+print clf.predict([list(test_features[0])])
 
 # with open('nothing_test.csv', 'rU') as csvfile:
 # 	reader = csv.reader(csvfile)
